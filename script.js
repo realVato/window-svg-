@@ -25,23 +25,47 @@ function getKeyAndMove(e) {
 // X axis
 function moveLeft() {
     let xValue = parseInt(glass.getAttribute('x')) - 1;
+    const yValue = glass.getAttribute('y');
     glass.setAttribute('x', xValue);
+    if (xValue <= 50 || yValue >= 126 || yValue <= 86) {
+        glass.setAttribute('fill', 'yellow');
+    } else if (xValue < 124) {
+        glass.setAttribute('fill', '#fff');
+    } 
 }
 
 function moveRight() {
     let xValue = parseInt(glass.getAttribute('x')) + 1;
+    const yValue = glass.getAttribute('y');
     glass.setAttribute('x', xValue);
+    if (xValue >= 124 || yValue >= 126 || yValue <= 86) {
+        glass.setAttribute('fill', 'yellow');
+    } else if (xValue > 50) {
+        glass.setAttribute('fill', '#fff');
+    }
 }
 
 // Y axis
 function moveUp() {
     let yValue = parseInt(glass.getAttribute('y')) - 1;
+    const xValue = glass.getAttribute('x');
     glass.setAttribute('y', yValue);
+    if (yValue <= 86 && xValue > 50 || xValue < 50 || xValue > 124) {
+        glass.setAttribute('fill', 'yellow');
+    } else if (yValue < 126) {
+        glass.setAttribute('fill', '#fff');
+    }
 }
 
 function moveDown() {
     let yValue = parseInt(glass.getAttribute('y')) + 1;
+    const xValue = glass.getAttribute('x');
     glass.setAttribute('y', yValue);
+    if (yValue >= 126 && xValue > 50 || xValue < 50 || xValue > 124) {
+        glass.setAttribute('fill', 'yellow');
+    } else if (yValue > 86) {
+        glass.setAttribute('fill', '#fff');
+    }
 }
 
 document.addEventListener('keydown', getKeyAndMove);
